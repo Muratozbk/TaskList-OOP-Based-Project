@@ -1,6 +1,12 @@
+import LS from './ls.js'
+
 function UI() {
-    UI.prototype.addToUI = function (task) {
-        let newHtml = `
+  const ls = new LS();
+
+  UI.prototype.addToUI = function (task) {
+    ls.storeTask(task);
+
+    let newHtml = `
 <div class="task-list">
 <div class="task" data-createdate="${task.id}">
   <div class="task__details">
@@ -15,16 +21,25 @@ function UI() {
 </div>
 </div>
 `;
-        document.querySelector('.task-list')
-            .insertAdjacentHTML('afterbegin', newHtml)
-    };
-    UI.prototype.resetForm = function () {
-        document.getElementById('newtaskID').value = '';
-    }
+    document.querySelector('.task-list')
+      .insertAdjacentHTML('afterbegin', newHtml)
+  };
+  UI.prototype.resetForm = function () {
+    document.getElementById('newtaskID').value = '';
+  }
 }
 
-/*
+UI.prototype.deleteTask = function (e) {
+  const task = e.target.parentElement.parentElement;
+  task.remove()
+}
 
+UI.prototype.completeTask = function (e) {
+  e.target.parentElement.parentElement
+    .classList.toggle('completed')
+}
+export default UI
+/*
       <div class="task-list">
         <div class="task" data-createdat="12/12/2022, 6:59:55 PM">
           <div class="task__details">
@@ -39,4 +54,3 @@ function UI() {
         </div>
       </div>
       */
-export default UI
