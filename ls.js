@@ -35,5 +35,9 @@ LS.prototype.completeTask = function (id) {
     }
     localStorage.setItem('tasks', JSON.stringify(tasks))
 }
+LS.prototype.findTask = function (id) {
+    let tasks = this.fetchTask();
+    return tasks.find((task) => task.id === id)
+}
 
 export default LS

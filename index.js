@@ -23,11 +23,22 @@ document.querySelector('.AddTaskBtn')
     });
 
 document.querySelector('.task-list').addEventListener('click', (e) => {
-    console.log(e.target.className);
+
+    if (e.target.className.includes('task__op_edit')) {
+        ui.editTask(e);
+    }
+
     if (e.target.className.includes('task__op_delete')) {
         ui.deleteTask(e)
     }
     if (e.target.className.includes('task-check')) {
         ui.completeTask(e)
     }
+});
+
+document.querySelector('.EditTaskBtn').addEventListener('click', (e) => {
+    ui.updateTask(e)
+})
+document.querySelector('.CancelTaskBtn').addEventListener('click', (e) => {
+    ui.cancelTask(e)
 })
