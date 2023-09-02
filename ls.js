@@ -1,4 +1,5 @@
 //localstorage
+import Task from './task.js';
 function LS() { }
 
 LS.prototype.fetchTask = function () {
@@ -6,8 +7,11 @@ LS.prototype.fetchTask = function () {
 
     if (tasks) {
         tasks = JSON.parse(tasks);
+        console.log(tasks);
     } else {
-        tasks = [];
+        const task = new Task('First Task')
+        tasks = [task];
+        localStorage.setItem('tasks', JSON.stringify(tasks))
     }
     return tasks;
 }
