@@ -25,4 +25,15 @@ LS.prototype.deleteTask = function (id) {
     localStorage.setItem('tasks', JSON.stringify(tasks))
 }
 
+LS.prototype.completeTask = function (id) {
+    let tasks = this.fetchTask();
+    let index = tasks.findIndex((task) => task.id === id)
+    if (tasks[index].isComplete) {
+        tasks[index].isComplete = false
+    } else {
+        tasks[index].isComplete = true;
+    }
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+}
+
 export default LS
