@@ -83,13 +83,24 @@ UI.prototype.updateTask = function (e) {
   const taskId = document.querySelector('#updateTaskId').value;
   const taskTitle = document.querySelector('#newtaskID').value;
   const tasks = document.querySelectorAll('.task-title')
+
   if (taskTitle.length > 0) {
+    ls.updateTask(taskId, taskTitle)
     tasks.forEach((title) => {
       if (title.parentElement.parentElement.dataset.createdate === taskId) {
         title.innerText = taskTitle;
       }
     });
   };
+  document.querySelector('#newtaskID').value = '';
+  document.querySelector('#updateTaskId').value = '';
+
+  document.querySelector('.AddTaskBtn').style.display = 'inline';
+  document.querySelector('.EditTaskBtn').style.display = 'none';
+  document.querySelector('.CancelTaskBtn').style.display = 'none';
+}
+
+UI.prototype.cancelTask = function (e) {
   document.querySelector('#newtaskID').value = '';
   document.querySelector('#updateTaskId').value = '';
 
